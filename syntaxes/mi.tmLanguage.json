@@ -7,19 +7,33 @@
 		},
 		{
 			"include": "#strings"
+		},
+		{
+			"include": "#singleStrings"
 		}
 	],
 	"repository": {
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.mi",
-				"match": "\\b(if|while|for|return|rexxara)\\b"
+				"match": "\\b(showBg|leave|showCh|playBgm|pauseBgm|resumeBgm|removeBg|showCg|removeCg|showChoose|showInput|showEffect|removeEffect)\\b"
 			}]
 		},
 		"strings": {
 			"name": "string.quoted.double.mi",
 			"begin": "\"",
 			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.mi",
+					"match": "\\\\."
+				}
+			]
+		},
+		"singleStrings": {
+			"name": "string.quoted.single.mi",
+			"begin": "'",
+			"end": "'",
 			"patterns": [
 				{
 					"name": "constant.character.escape.mi",
