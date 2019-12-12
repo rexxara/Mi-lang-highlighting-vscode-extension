@@ -1,0 +1,25 @@
+{
+    "name": "mi-lang",
+    "displayName": "Mi Lang",
+    "description": "Syntax highlighting for mi lang",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.40.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "mi",
+            "aliases": ["Mi", "mi"],
+            "extensions": [".mi"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "mi",
+            "scopeName": "source.mi",
+            "path": "./syntaxes/mi.tmLanguage.json"
+        }]
+    }
+}
