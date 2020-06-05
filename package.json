@@ -1,25 +1,49 @@
 {
-    "name": "mi-lang",
-    "displayName": "Mi Lang",
-    "description": "Syntax highlighting for mi lang",
-    "version": "0.0.1",
-    "engines": {
-        "vscode": "^1.40.0"
-    },
-    "categories": [
-        "Programming Languages"
-    ],
-    "contributes": {
-        "languages": [{
-            "id": "mi",
-            "aliases": ["Mi", "mi"],
-            "extensions": [".mi"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "mi",
-            "scopeName": "source.mi",
-            "path": "./syntaxes/mi.tmLanguage.json"
-        }]
-    }
+	"name": "mi-lang",
+	"displayName": "Mi Lang",
+	"description": "Syntax highlighting for mi lang",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.40.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"publisher": "rexxara",
+	"contributes": {
+		"snippets": [
+		  {
+			"language": "mi",
+			"path": "./syntaxes/snippets.json"
+		  }
+		],
+		"languages": [
+			{
+				"id": "mi",
+				"aliases": [
+					"Mi",
+					"mi"
+				],
+				"extensions": [
+					".mi"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "mi",
+				"scopeName": "source.mi",
+				"path": "./syntaxes/mi.tmLanguage.json",
+                "embeddedLanguages": {
+                  "meta.embedded.block.javascript": "javascript"
+                }
+			}
+		]
+	},
+	"__metadata": {
+		"id": "e7858489-4003-4df3-8d8d-fccffbec474a",
+		"publisherDisplayName": "rexxara",
+		"publisherId": "31104e5f-a251-4f58-a620-06154f30c008"
+	}
 }

@@ -6,6 +6,9 @@
 			"include": "#keywords"
 		},
 		{
+			"include": "#expression"
+		},
+		{
 			"include": "#strings"
 		},
 		{
@@ -13,11 +16,42 @@
 		}
 	],
 	"repository": {
+		"expression": {
+			"patterns": [
+				{
+					"include": "#letter"
+				},
+				{
+					"include": "#paren-expression"
+				}
+			]
+		},
+		"letter": {
+			"match": "showBg|leave|showCh",
+			"name": "keyword.commandLetter"
+		},
+		"paren-expression": {
+			"begin": "\\[",
+			"end": "\\]",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.paren.open"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.paren.close"
+				}
+			},
+			"name": "expression.group",
+			"patterns": [
+				{
+					"include": "#expression"
+				}
+			]
+		},
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.mi",
-				"match": "\\b(showBg|leave|showCh|playBgm|pauseBgm|resumeBgm|removeBg|showCg|removeCg|showChoose|showInput|showEffect|removeEffect)\\b"
-			}]
+			"patterns": []
 		},
 		"strings": {
 			"name": "string.quoted.double.mi",
