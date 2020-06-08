@@ -10,12 +10,16 @@
 		"Programming Languages"
 	],
 	"publisher": "rexxara",
+	"main": "./out/extension.js",
+	"activationEvents": [
+		"onLanguage:mi"
+	],
 	"contributes": {
 		"snippets": [
-		  {
-			"language": "mi",
-			"path": "./syntaxes/snippets.json"
-		  }
+			{
+				"language": "mi",
+				"path": "./syntaxes/snippets.json"
+			}
 		],
 		"languages": [
 			{
@@ -26,18 +30,7 @@
 				],
 				"extensions": [
 					".mi"
-				],
-				"configuration": "./language-configuration.json"
-			}
-		],
-		"grammars": [
-			{
-				"language": "mi",
-				"scopeName": "source.mi",
-				"path": "./syntaxes/mi.tmLanguage.json",
-                "embeddedLanguages": {
-                  "meta.embedded.block.javascript": "javascript"
-                }
+				]
 			}
 		]
 	},
@@ -45,5 +38,19 @@
 		"id": "e7858489-4003-4df3-8d8d-fccffbec474a",
 		"publisherDisplayName": "rexxara",
 		"publisherId": "31104e5f-a251-4f58-a620-06154f30c008"
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint . --ext .ts,.tsx",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^12.12.0",
+		"@types/vscode": "^1.42.0",
+		"@typescript-eslint/eslint-plugin": "^3.0.2",
+		"@typescript-eslint/parser": "^3.0.2",
+		"eslint": "^7.1.0",
+		"typescript": "^3.9.4"
 	}
 }

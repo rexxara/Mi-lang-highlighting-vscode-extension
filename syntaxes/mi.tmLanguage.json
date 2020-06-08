@@ -27,7 +27,7 @@
 			]
 		},
 		"letter": {
-			"match": "showBg|leave|showCh",
+			"match": "showBg|leaveCh|showCh|playBgm|pauseBgm|resumeBgm|removeBg|showCg|removeCg|showChoose|showInput|showEffect|removeEffect|showSoundEffect",
 			"name": "keyword.commandLetter"
 		},
 		"paren-expression": {
