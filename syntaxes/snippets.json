@@ -1,7 +1,152 @@
 {
-  "For Loop": {
-    "prefix": ["for", "for-const"],
-    "body": ["for (const ${2:element} of ${1:array}) {", "\t$0", "}"],
-    "description": "A for loop."
+  "show background": {
+    "prefix": [
+      "showBg"
+    ],
+    "body": [
+      "[showBg:${1:backgroundName}]",
+      ""
+    ],
+    "description": "show background"
+  },
+  "leave character": {
+    "prefix": [
+      "leaveCh"
+    ],
+    "body": [
+      "[leaveCh:${1:characterName}]",
+      ""
+    ],
+    "description": "remove a character from scence"
+  },
+  "show character": {
+    "prefix": [
+      "showCh"
+    ],
+    "body": [
+      "[showCh:${1:characterName}(${2:emotion})]",
+      ""
+    ],
+    "description": "add a character to scence"
+  },
+  "show character with out emotion": {
+    "prefix": [
+      "showCh"
+    ],
+    "body": [
+      "[showCh:${1:characterName}]",
+      ""
+    ],
+    "description": "with out emotion ,add a character to scence"
+  },
+  "play bgm": {
+    "prefix": [
+      "playBgm"
+    ],
+    "body": [
+      "[playBgm:${1:bgmName}]",
+      ""
+    ],
+    "description": "play bgm"
+  },
+  "pause bgm": {
+    "prefix": [
+      "pauseBgm"
+    ],
+    "body": [
+      "[pauseBgm]",
+      ""
+    ],
+    "description": "pause bgm"
+  },
+  "resume bgm": {
+    "prefix": [
+      "resumeBgm"
+    ],
+    "body": [
+      "[resumeBgm]",
+      ""
+    ],
+    "description": "resume bgm"
+  },
+  "remove background": {
+    "prefix": [
+      "removeBg"
+    ],
+    "body": [
+      "[removeBg]",
+      ""
+    ],
+    "description": "remove background"
+  },
+  "show cg": {
+    "prefix": [
+      "showCg"
+    ],
+    "body": [
+      "[showCg:${1:cgName}]",
+      ""
+    ],
+    "description": "show cg"
+  },
+  "remove cg": {
+    "prefix": [
+      "removeCg"
+    ],
+    "body": [
+      "[removeCg]",
+      ""
+    ],
+    "description": "remove cg"
+  },
+  "show choose": {
+    "prefix": [
+      "showChoose"
+    ],
+    "body": [
+      "[showChoose:${1:chooseName}]",
+      ""
+    ],
+    "description": "show choose"
+  },
+  "show input": {
+    "prefix": [
+      "showInput"
+    ],
+    "body": [
+      "[showInput:${1:inputName}]",
+      ""
+    ],
+    "description": "show input"
+  },
+  "show effect": {
+    "prefix": [
+      "showEffect"
+    ],
+    "body": [
+      "[showEffect:${1:effectName}]",
+      ""
+    ],
+    "description": "show effect"
+  },
+  "remove effect": {
+    "prefix": [
+      "removeEffect"
+    ],
+    "body": [
+      "[removeEffect]",
+      ""
+    ],
+    "description": "remove effect"
+  },
+  "show sound effect": {
+    "prefix": [
+      "showSoundEffect"
+    ],
+    "body": [
+      "[showSoundEffect:${1:soundEffectName}]",
+      ""
+    ],
+    "description": "show effect"
   }
 }

@@ -5,7 +5,20 @@ const tokenModifiers = new Map<string, number>();
 interface ApiMap {
 	[arg: string]: true
 }
-const apis = ['showBg', "leaveCh", "showCh", "playBgm", "pauseBgm", "resumeBgm", "removeBg", "showCg", "removeCg", "showChoose", "showInput", "showEffect", "removeEffect", "showSoundEffect"]
+const apis = ['showBg',
+	"leaveCh",
+	"showCh",
+	"playBgm", 
+	"pauseBgm", 
+	"resumeBgm", 
+	"removeBg", 
+	"showCg",
+	 "removeCg",
+	  "showChoose",
+	   "showInput",
+		"showEffect",
+		 "removeEffect",
+		  "showSoundEffect"]
 let apiMap: ApiMap = {}
 apis.map(v => {
 	apiMap[v] = true
