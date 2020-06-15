@@ -8,23 +8,23 @@ interface ApiMap {
 const apis = ['showBg',
 	"leaveCh",
 	"showCh",
-	"playBgm", 
-	"pauseBgm", 
-	"resumeBgm", 
-	"removeBg", 
+	"playBgm",
+	"pauseBgm",
+	"resumeBgm",
+	"removeBg",
 	"showCg",
-	 "removeCg",
-	  "showChoose",
-	   "showInput",
-		"showEffect",
-		 "removeEffect",
-		  "showSoundEffect"]
+	"removeCg",
+	"showChoose",
+	"showInput",
+	"showEffect",
+	"removeEffect",
+	"showSoundEffect"]
 let apiMap: ApiMap = {}
 apis.map(v => {
 	apiMap[v] = true
 })
 const legend = (function () {
-	const tokenTypesLegend = ['keyword', 'variable'];
+	const tokenTypesLegend = ['keyword', 'variable','comment'];
 	tokenTypesLegend.forEach((tokenType, index) => tokenTypes.set(tokenType, index));
 
 	const tokenModifiersLegend: string[] = [];
@@ -62,6 +62,9 @@ class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensPro
 		if (tokenType === 'var') {
 			return tokenTypes.get('variable')!
 		}
+		if (tokenType === 'comment') {
+			return tokenTypes.get('comment')!
+		}
 		return tokenTypes.size + 2;
 	}
 
@@ -84,46 +87,56 @@ class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensPro
 		for (let i = 0; i < lines.length; i++) {
 			const line = lines[i];
 			let currentOffset = 0;
-			do {
-				const openOffset = line.indexOf('[', currentOffset);
-				if (openOffset === -1) {
-					break;
-				}
-				const closeOffset = line.indexOf(']', openOffset);
-				if (closeOffset === -1) {
-					break;
-				}
+			if (line.indexOf("//") === 0) {
+				r.push({
+					line: i,
+					startCharacter: 0,
+					length: line.length,
+					tokenType: 'comment',
+					tokenModifiers: []
+				});
+			}else {
+				do {
+					const openOffset = line.indexOf('[', currentOffset);
+					if (openOffset === -1) {
+						break;
+					}
+					const closeOffset = line.indexOf(']', openOffset);
+					if (closeOffset === -1) {
+						break;
+					}
 
-				const tokenData = this._parseTextToken(line.substring(openOffset + 1, closeOffset));
-				r.push({
-					line: i,
-					startCharacter: openOffset + 1,
-					length: closeOffset - openOffset - 1,
-					tokenType: tokenData.tokenType,
-					tokenModifiers: tokenData.tokenModifiers
-				});
-				currentOffset = closeOffset;
-			} while (true);
-			let varCurrentOffset = 0;
-			do {
-				const variableOpenOffset = line.indexOf("${", varCurrentOffset)
-				if (variableOpenOffset === -1) {
-					break;
-				}
-				const variableCloseOffset = line.indexOf("}", variableOpenOffset)
-				if (variableCloseOffset === -1) {
-					break;
-				}
-				const tokenData = this._parseTextToken(line.substring(variableOpenOffset + 1, variableCloseOffset));
-				r.push({
-					line: i,
-					startCharacter: variableOpenOffset,
-					length: (variableCloseOffset - variableOpenOffset) + 1,
-					tokenType: 'var',
-					tokenModifiers: tokenData.tokenModifiers
-				});
-				varCurrentOffset = variableCloseOffset;
-			} while (true);
+					const tokenData = this._parseTextToken(line.substring(openOffset + 1, closeOffset));
+					r.push({
+						line: i,
+						startCharacter: openOffset + 1,
+						length: closeOffset - openOffset - 1,
+						tokenType: tokenData.tokenType,
+						tokenModifiers: tokenData.tokenModifiers
+					});
+					currentOffset = closeOffset;
+				} while (true);
+				let varCurrentOffset = 0;
+				do {
+					const variableOpenOffset = line.indexOf("${", varCurrentOffset)
+					if (variableOpenOffset === -1) {
+						break;
+					}
+					const variableCloseOffset = line.indexOf("}", variableOpenOffset)
+					if (variableCloseOffset === -1) {
+						break;
+					}
+					const tokenData = this._parseTextToken(line.substring(variableOpenOffset + 1, variableCloseOffset));
+					r.push({
+						line: i,
+						startCharacter: variableOpenOffset,
+						length: (variableCloseOffset - variableOpenOffset) + 1,
+						tokenType: 'var',
+						tokenModifiers: tokenData.tokenModifiers
+					});
+					varCurrentOffset = variableCloseOffset;
+				} while (true);
+			}
 		}
 		return r;
 	}
