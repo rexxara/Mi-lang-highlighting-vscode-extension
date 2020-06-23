@@ -148,5 +148,15 @@
       ""
     ],
     "description": "show effect"
+  },
+  "delay": {
+    "prefix": [
+      "delay"
+    ],
+    "body": [
+      "[delay:${1:millisecond}]",
+      ""
+    ],
+    "description": "delay"
   }
 }
