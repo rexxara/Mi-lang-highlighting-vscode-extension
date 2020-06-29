@@ -25,7 +25,7 @@ apis.map(v => {
 	apiMap[v] = true
 })
 const legend = (function () {
-	const tokenTypesLegend = ['keyword', 'variable','comment'];
+	const tokenTypesLegend = ['keyword', 'variable', 'comment', 'namespace'];
 	tokenTypesLegend.forEach((tokenType, index) => tokenTypes.set(tokenType, index));
 
 	const tokenModifiersLegend: string[] = [];
@@ -66,6 +66,9 @@ class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensPro
 		if (tokenType === 'comment') {
 			return tokenTypes.get('comment')!
 		}
+		if(tokenType==='namespace'){
+			return tokenTypes.get('namespace')!
+		}
 		return tokenTypes.size + 2;
 	}
 
@@ -96,7 +99,16 @@ class DocumentSemanticTokensProvider implements vscode.DocumentSemanticTokensPro
 					tokenType: 'comment',
 					tokenModifiers: []
 				});
-			}else {
+			} else {
+				if (line.indexOf(">") === 0) {
+					r.push({
+						line: i,
+						startCharacter: 0,
+						length: 1,
+						tokenType: 'namespace',
+						tokenModifiers: []
+					});
+				} 
 				do {
 					const openOffset = line.indexOf('[', currentOffset);
 					if (openOffset === -1) {
